@@ -7,10 +7,35 @@ module.exports={
     getRecipesByIngredient
 }
 
+/*SELECT r.name AS RecipeName,
+       r.notes,
+       i.qty,
+       i.unit,
+       i.name AS Ingredient,
+       s.step_number,
+       s.instructions
+  FROM recipes AS r
+       JOIN
+       junction AS j ON j.recipe_id = r.id
+       JOIN
+       ingredients AS i ON j.ingredient_id = i.id
+       JOIN
+       steps AS s ON s.recipe_id = r.id
+ WHERE r.id = '1'*/
 function getRecipes(){
     return Recipes('recipes')
 }
 
+/*SELECT i.qty,
+       i.unit,
+       i.name AS Ingredient,
+       r.name AS Recipe
+  FROM ingredients AS i
+       JOIN
+       junction AS j ON j.ingredient_id = i.id
+       JOIN
+       recipes AS r ON j.recipe_id = r.id
+ WHERE r.id = '2' */
 function getShoppingList(recipe_id){
     return Recipes('ingredients')
             .where('recipe_id', recipe_id)
