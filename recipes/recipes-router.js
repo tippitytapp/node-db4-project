@@ -58,6 +58,12 @@ router.get('/ingredients/:id/recipes', (req, res) => {
     })
 })
 
-
+router.post('/recipes', (req, res) => {
+    const recipeData = req.body
+    Recipes.add(recipeData)
+        .then(recipe => {
+            res.status(201).json(recipe)
+        })
+})
 
 module.exports = router;

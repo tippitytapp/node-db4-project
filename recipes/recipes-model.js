@@ -4,7 +4,9 @@ module.exports={
     getRecipes,
     getShoppingList,
     getInstructions,
-    getRecipesByIngredient
+    getRecipesByIngredient,
+    findById,
+    add
 }
 
 /*SELECT r.name AS RecipeName,
@@ -58,4 +60,18 @@ function getRecipesByIngredient(ingredient_id){
             .join('junction as j', 'j.ingredient_id', '=', 'ingredients.id')
             .join('recipes as r', 'j.recipe_id', '=', 'r.id')
             .select('r.name')
+}
+
+function findById(id){
+    return Recipes('recipes')
+            .where({id})
+            .first();
+}
+
+function add(recipe){
+    return Recipes('recipes')
+            .insert(recipe, "id")
+            .then(id => {
+                return findById(id[0])
+            })
 }
