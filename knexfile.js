@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'sqlite3',
-    notNullAsDefault: true,
+    useNullAsDefault: true,
     connection: {
       filename: './data/recipebook.db3'
     },
